@@ -1,1 +1,12 @@
 .ipynb_checkpoints/
+Trabalho/masterthesis.aux
+Trabalho/masterthesis.bbl
+Trabalho/masterthesis.blg
+Trabalho/masterthesis.idx
+Trabalho/masterthesis.log
+Trabalho/masterthesis.lof
+Trabalho/masterthesis.lot
+Trabalho/masterthesis.out
+Trabalho/masterthesis.toc
+Trabalho/*.pdf
+!Trabalho/masterthesis.pdf

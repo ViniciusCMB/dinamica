@@ -12,8 +12,8 @@ A cinemática estuda a geometria do movimento sem considerar as forças que o ca
 A velocidade de um ponto $B$ em relação a um referencial fixo é dada pela soma da velocidade de translação do ponto $A$ com a velocidade gerada pela rotação do corpo em torno de $A$. A equação vetorial da velocidade é expressa por:
 
 \begin{equation}
-    \vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A} + \vec{v}_{rel}
-    \label{eq:velocidade}
+  \vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A} + \vec{v}_{rel}
+  \label{eq:velocidade}
 \end{equation}
 
 Onde $\vec{v}_B$ e $\vec{v}_A$ são os vetores velocidade absoluta dos pontos $B$ e $A$; $\vec{\omega}$ é o vetor velocidade angular do corpo; $\vec{r}_{B/A}$ é o vetor posição de $B$ em relação a $A$; e $\vec{v}_{rel}$ é a velocidade relativa caso haja deslizamento em referenciais móveis (que para corpos rigidamente conectados, é nula).
@@ -22,8 +22,8 @@ Onde $\vec{v}_B$ e $\vec{v}_A$ são os vetores velocidade absoluta dos pontos $B
 Derivando-se a Equação \ref{eq:velocidade} em relação ao tempo, obtém-se o campo de acelerações do corpo rígido, dado por:
 
 \begin{equation}
-    \vec{a}_B = \vec{a}_A + \vec{\alpha} \times \vec{r}_{B/A} + \vec{\omega} \times (\vec{\omega} \times \vec{r}_{B/A}) + 2\vec{\omega} \times \vec{v}_{rel} + \vec{a}_{rel}
-    \label{eq:aceleracao}
+  \vec{a}_B = \vec{a}_A + \vec{\alpha} \times \vec{r}_{B/A} + \vec{\omega} \times (\vec{\omega} \times \vec{r}_{B/A}) + 2\vec{\omega} \times \vec{v}_{rel} + \vec{a}_{rel}
+  \label{eq:aceleracao}
 \end{equation}
 
 Nesta formulação, $\vec{\alpha}$ representa o vetor aceleração angular. O termo $\vec{\alpha} \times \vec{r}_{B/A}$ é a componente tangencial da aceleração relativa, enquanto $\vec{\omega} \times (\vec{\omega} \times \vec{r}_{B/A})$ representa a componente normal (centrípeta). Os termos envolvendo $\vec{v}_{rel}$ e $\vec{a}_{rel}$ correspondem à aceleração de Coriolis e à aceleração relativa, respectivamente.
@@ -35,15 +35,15 @@ A cinética relaciona as forças e momentos atuantes no sistema com o movimento 
 
 O somatório das forças externas atua sobre o centro de massa (CM) regendo sua translação:
 \begin{equation}
-    \sum \vec{F}_{ext} = m\vec{a}_{cm}
-    \label{eq:newton}
+  \sum \vec{F}_{ext} = m\vec{a}_{cm}
+  \label{eq:newton}
 \end{equation}
 
 Para o movimento rotacional, o somatório dos momentos das forças externas em relação ao centro de massa ($\vec{M}_{fe/*}$) é governado pela taxa de variação do momento angular. Na notação tensorial e em eixos solidários ao corpo, a equação de Euler é:
 
 \begin{equation}
-    \sum \vec{M}_{fe/*} = [I]\vec{\alpha} + \vec{\omega} \times ([I]\vec{\omega})
-    \label{eq:euler_momentos}
+  \sum \vec{M}_{fe/*} = [I]\vec{\alpha} + \vec{\omega} \times ([I]\vec{\omega})
+  \label{eq:euler_momentos}
 \end{equation}
 
 Onde $[I]$ é a matriz do tensor de inércia em relação ao centro de massa. O segundo termo do lado direito, $\vec{\omega} \times ([I]\vec{\omega})$, representa a parcela giroscópica não-linear inerente ao movimento rotacional no espaço 3D.
@@ -52,20 +52,20 @@ Onde $[I]$ é a matriz do tensor de inércia em relação ao centro de massa. O 
 
 A distribuição de massa de um corpo rígido em relação a um ponto $P$ é caracterizada pelo tensor de inércia, cujos elementos são
 \begin{equation}
-    I_{ij} = \int_V \left( r^{2}\,\delta_{ij} - r_i\,r_j \right) dm ,
-    \label{eq:tensor}
+  I_{ij} = \int_V \left( r^{2}\,\delta_{ij} - r_i\,r_j \right) dm ,
+  \label{eq:tensor}
 \end{equation}
 em que $r_i$ são as coordenadas do elemento de massa $dm$ em relação a $P$, $r^2=r_1^2+r_2^2+r_3^2$ e $\delta_{ij}$ é o delta de Kronecker. Os elementos da diagonal são os momentos de inércia e os elementos fora da diagonal são os produtos de inércia (com sinal trocado). O tensor é simétrico e sempre existe um sistema de eixos, os eixos principais, em que ele é diagonal; os elementos diagonais correspondentes são os momentos principais de inércia, autovalores de $[I]$.
 
 Para sólidos homogêneos simples, com a origem no centro de massa e os eixos ao longo das direções de simetria, o tensor é diagonal e conhecido. Para um paralelepípedo de massa $m$ e arestas $a$, $b$ e $c$ ao longo de $x$, $y$ e $z$:
 \begin{equation}
-    [I^*_{par}] = \frac{m}{12}\,\mathrm{diag}\!\left(b^{2}+c^{2},\; a^{2}+c^{2},\; a^{2}+b^{2}\right),
-    \label{eq:Ipar}
+  [I^*_{par}] = \frac{m}{12}\,\mathrm{diag}\!\left(b^{2}+c^{2},\; a^{2}+c^{2},\; a^{2}+b^{2}\right),
+  \label{eq:Ipar}
 \end{equation}
 e para um cilindro maciço de massa $m$, raio $r$ e altura $h$, com eixo ao longo de $z$:
 \begin{equation}
-    [I^*_{cil}] = \mathrm{diag}\!\left(\frac{m(3r^{2}+h^{2})}{12},\; \frac{m(3r^{2}+h^{2})}{12},\; \frac{m\,r^{2}}{2}\right).
-    \label{eq:Icil}
+  [I^*_{cil}] = \mathrm{diag}\!\left(\frac{m(3r^{2}+h^{2})}{12},\; \frac{m(3r^{2}+h^{2})}{12},\; \frac{m\,r^{2}}{2}\right).
+  \label{eq:Icil}
 \end{equation}
 Esses dois sólidos são suficientes para representar todas as peças do robô: os palitos e a bateria como paralelepípedos, e o pino, o furo e o eixo do motor como cilindros.
 
@@ -74,25 +74,25 @@ Esses dois sólidos são suficientes para representar todas as peças do robô: 
 
 Se $[I^*]$ é o tensor de uma peça em relação ao seu centro de massa e $\vec d$ é o vetor que vai do ponto de referência $P$ ao centro de massa da peça, o tensor em relação a $P$ é, na forma tensorial do teorema dos eixos paralelos (Steiner),
 \begin{equation}
-    [I_P] = [I^*] + m\left( |\vec d|^{2}\,[\mathbb{I}] - \vec d\,\vec d^{\,T} \right).
-    \label{eq:steiner}
+  [I_P] = [I^*] + m\left( |\vec d|^{2}\,[\mathbb{I}] - \vec d\,\vec d^{\,T} \right).
+  \label{eq:steiner}
 \end{equation}
 Uma peça descrita em um sistema próprio, girada em relação ao sistema do corpo por uma matriz de rotação $[R]$, tem tensor $[R][I^*][R]^T$ no sistema do corpo. Um corpo composto por $n$ peças, de massas $m_i$ e centros de massa em $\vec r_i$, tem massa $m=\sum m_i$, centro de massa $\vec r_{cm}=\sum m_i\vec r_i/m$ e tensor em torno do seu centro de massa
 \begin{equation}
-    [I^*_{cj}] = \sum_{i=1}^{n}\left\{ [R_i][I^*_i][R_i]^T + m_i\left( |\vec d_i|^{2}\,[\mathbb{I}] - \vec d_i\,\vec d_i^{\,T}\right)\right\},
-    \qquad \vec d_i=\vec r_i-\vec r_{cm}.
-    \label{eq:composicao}
+  [I^*_{cj}] = \sum_{i=1}^{n}\left\{ [R_i][I^*_i][R_i]^T + m_i\left( |\vec d_i|^{2}\,[\mathbb{I}] - \vec d_i\,\vec d_i^{\,T}\right)\right\},
+  \qquad \vec d_i=\vec r_i-\vec r_{cm}.
+  \label{eq:composicao}
 \end{equation}
 Furos e cavidades são tratados como peças de massa negativa. No movimento plano em torno de um eixo paralelo a $z$ que passa por um pivô a uma distância $d$ do centro de massa, o momento de inércia reduz-se a $I_{piv\hat{o}}=I^*_{zz}+m\,d^{2}$.
 
 \section{\textbf{Equações de Movimento de um Sistema de Corpos}}
 \label{sec:sistemas}
 
-Em um sistema de corpos rígidos descrito por coordenadas generalizadas $q_k$, cada corpo $i$ satisfaz as equações de Newton e de Euler (Equações \ref{eq:newton} e \ref{eq:euler_momentos}), mas as forças de ligação entre os corpos são incógnitas. Chamando de velocidades parciais as derivadas $\vec v_i^{\,k}=\partial\vec v_i/\partial\dot q_k$ e $\vec\omega_i^{\,k}=\partial\vec\omega_i/\partial\dot q_k$, a projeção das equações de Newton e de Euler sobre essas direções elimina as reações de ligação que não realizam trabalho, o que é a essência do método de Kane \cite{kane1985}. As equações de movimento resultam, para cada coordenada generalizada,
+Em um sistema de corpos rígidos descrito por coordenadas generalizadas $q_k$, cada corpo $i$ satisfaz as equações de Newton e de Euler (Equações \ref{eq:newton} e \ref{eq:euler_momentos}), mas as forças de ligação entre os corpos são incógnitas. Chamando de velocidades parciais as derivadas $\vec v_i^{\,k}=\partial\vec v_i/\partial\dot q_k$ e $\vec\omega_i^{\,k}=\partial\vec\omega_i/\partial\dot q_k$, a projeção das equações de Newton e de Euler sobre essas direções elimina as reações de ligação que não realizam trabalho, o que é a essência do método de Kane. As equações de movimento resultam, para cada coordenada generalizada,
 \begin{equation}
-    \sum_i\left[\left(m_i\vec a_i-\vec F_i\right)\cdot\vec v_i^{\,k}+\left(\frac{d\vec H_i}{dt}-\vec M_i\right)\cdot\vec\omega_i^{\,k}\right]=0 ,
-    \label{eq:kane_rev}
+  \sum_i\left[\left(m_i\vec a_i-\vec F_i\right)\cdot\vec v_i^{\,k}+\left(\frac{d\vec H_i}{dt}-\vec M_i\right)\cdot\vec\omega_i^{\,k}\right]=0 ,
+  \label{eq:kane_rev}
 \end{equation}
-em que $d\vec H_i/dt=[I_i]\vec\alpha_i+\vec\omega_i\times([I_i]\vec\omega_i)$ é o lado direito da Equação \ref{eq:euler_momentos}. Os livros de Dinâmica \cite{meriam2012,hibbeler2016,beer2013} tratam a obtenção dessas equações pelas leis de Newton-Euler e por princípios de trabalho virtual; a Equação \ref{eq:kane_rev} é equivalente às equações de Lagrange.
+em que $d\vec H_i/dt=[I_i]\vec\alpha_i+\vec\omega_i\times([I_i]\vec\omega_i)$ é o lado direito da Equação \ref{eq:euler_momentos}. Os livros de Dinâmica tratam a obtenção dessas equações pelas leis de Newton-Euler e por princípios de trabalho virtual; a Equação \ref{eq:kane_rev} é equivalente às equações de Lagrange.
 
-Quando há uma ligação com o ambiente, como um gancho preso a um ponto da corda, ela é imposta por uma restrição $\mathbf g(\mathbf q,t)=\mathbf 0$ e por multiplicadores de Lagrange $\boldsymbol\lambda$, que representam as forças de contato. A derivação da restrição em relação ao tempo fornece uma equação linear nas acelerações, que, acrescentada às equações de movimento, forma um sistema algébrico para $\ddot{\mathbf q}$ e $\boldsymbol\lambda$ (Seção \ref{sec:contato}). Para que a restrição não se degrade na integração numérica, usa-se a estabilização de Baumgarte \cite{baumgarte1972}. Quando uma nova restrição é imposta de forma abrupta, o contato é tratado como um impacto perfeitamente plástico, no qual o impulso das forças de contato altera as velocidades generalizadas sem alterar as posições.
+Quando há uma ligação com o ambiente, como um gancho preso a um ponto da corda, ela é imposta por uma restrição $\mathbf g(\mathbf q,t)=\mathbf 0$ e por multiplicadores de Lagrange $\boldsymbol\lambda$, que representam as forças de contato. A derivação da restrição em relação ao tempo fornece uma equação linear nas acelerações, que, acrescentada às equações de movimento, forma um sistema algébrico para $\ddot{\mathbf q}$ e $\boldsymbol\lambda$ (Seção \ref{sec:contato}). Para que a restrição não se degrade na integração numérica, usa-se a estabilização de Baumgarte. Quando uma nova restrição é imposta de forma abrupta, o contato é tratado como um impacto perfeitamente plástico, no qual o impulso das forças de contato altera as velocidades generalizadas sem alterar as posições.

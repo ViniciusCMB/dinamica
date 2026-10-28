@@ -1,7 +1,7 @@
 \chapter{TENSORES DE INÉRCIA DO PROTÓTIPO}
 \label{chapter:inercia}
 
-Este capítulo apresenta o cálculo da massa, do centro de massa e do tensor de inércia de cada peça do robô e do conjunto montado. Todos os cálculos seguem o procedimento da Seção \ref{sec:composicao}: cada peça é decomposta em sólidos homogêneos elementares (paralelepípedos e cilindros), cujos tensores no centro de massa são conhecidos (Equações \ref{eq:Ipar} e \ref{eq:Icil}); esses tensores são girados para o sistema da peça e transportados para o centro de massa do conjunto pelo teorema dos eixos paralelos (Equação \ref{eq:steiner}). Os cálculos foram implementados em Python com a biblioteca SymPy \cite{sympy2017}, e as massas parciais das peças de madeira foram distribuídas proporcionalmente ao volume (ou, para barras de mesma seção, ao comprimento), supondo densidade uniforme. Os valores de tensor estão expressos em g$\cdot$mm$^2$ (1 g$\cdot$mm$^2 = 10^{-9}$ kg$\cdot$m$^2$) e as posições em mm.
+Este capítulo apresenta o cálculo da massa, do centro de massa e do tensor de inércia de cada peça do robô e do conjunto montado. Todos os cálculos seguem o procedimento da Seção \ref{sec:composicao}: cada peça é decomposta em sólidos homogêneos elementares (paralelepípedos e cilindros), cujos tensores no centro de massa são conhecidos (Equações \ref{eq:Ipar} e \ref{eq:Icil}); esses tensores são girados para o sistema da peça e transportados para o centro de massa do conjunto pelo teorema dos eixos paralelos (Equação \ref{eq:steiner}). Os cálculos foram implementados em Python com a biblioteca SymPy, e as massas parciais das peças de madeira foram distribuídas proporcionalmente ao volume (ou, para barras de mesma seção, ao comprimento), supondo densidade uniforme. Os valores de tensor estão expressos em g$\cdot$mm$^2$ (1 g$\cdot$mm$^2 = 10^{-9}$ kg$\cdot$m$^2$) e as posições em mm.
 
 \section{Convenções de Eixos}
 \label{sec:eixos}
@@ -133,11 +133,11 @@ O quadril é uma haste cilíndrica de 3,5 mm de diâmetro e 84,2 mm de comprimen
 A posição relativa das peças foi definida a partir da vista frontal do protótipo (\ref{fig:frontal}), que fornece duas cotas: 42 mm entre os palitos dos dois membros e 45,5 mm entre o eixo do motor (nível dos pinos das manivelas) e o eixo do quadril. Adotou-se:
 
 \begin{itemize}
-    \item membros nos planos $z=\pm 22$ mm (folga de 42 mm mais 2 mm de espessura) e quadril em $y=-45{,}5$ mm;
-    \item manivelas montadas nos dois lados da caixa, com os pinos defasados de 180$^\circ$, de modo que, quando um braço vai para trás, o outro vai para a frente;
-    \item braços como corpos rígidos que giram em torno do eixo do quadril e passam pelos pinos das manivelas (Seção \ref{sec:alavancas}), com extremidade inferior livre em $y=-66$ mm;
-    \item pernas penduradas do eixo do quadril, com o furo do quadril 4,6 mm abaixo da extremidade superior da perna (estimado), dedão voltado para a frente e calcanhar atrás;
-    \item bateria nas costas do robô, encostada na face traseira da caixa de redução e centrada em relação ao conjunto motor--caixa, com o lado de 67,7 mm na vertical.
+  \item membros nos planos $z=\pm 22$ mm (folga de 42 mm mais 2 mm de espessura) e quadril em $y=-45{,}5$ mm;
+  \item manivelas montadas nos dois lados da caixa, com os pinos defasados de 180$^\circ$, de modo que, quando um braço vai para trás, o outro vai para a frente;
+  \item braços como corpos rígidos que giram em torno do eixo do quadril e passam pelos pinos das manivelas (Seção \ref{sec:alavancas}), com extremidade inferior livre em $y=-66$ mm;
+  \item pernas penduradas do eixo do quadril, com o furo do quadril 4,6 mm abaixo da extremidade superior da perna (estimado), dedão voltado para a frente e calcanhar atrás;
+  \item bateria nas costas do robô, encostada na face traseira da caixa de redução e centrada em relação ao conjunto motor--caixa, com o lado de 67,7 mm na vertical.
 \end{itemize}
 
 \begin{figure}[H]
