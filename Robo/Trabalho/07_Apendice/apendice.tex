@@ -1,0 +1,38 @@
+\chapter{APÊNDICE}
+\label{ap:codigo}
+
+O equacionamento do robô foi implementado em Python, no ambiente Jupyter, no notebook \texttt{blocos\_inercia\_robo.ipynb}, organizado em onze blocos cumulativos. A seguir, a estrutura (\ref{tab:blocos}):
+
+\begin{table}[H]
+\centering
+\caption{\label{tab:blocos}- Estrutura do notebook \texttt{blocos\_inercia\_robo.ipynb}.}
+\vspace*{.1cm}
+\small
+\begin{tabular}{|c|p{11.5cm}|}
+\hline
+\textbf{Bloco} & \textbf{Conteúdo} \\
+\hline
+1 & Importações (NumPy, SymPy, Matplotlib) e configuração de exibição. \\
+\hline
+2 & Funções gerais: exibição de equações em LaTeX, conversão de unidades e funções utilitárias. \\
+\hline
+3 & Braço: massas, centro de massa e tensor de inércia das três barras, com cálculo simbólico em SymPy. \\
+\hline
+4 & Perna (contrapeso): mesma rotina do Braço, com desenho cotado da peça. \\
+\hline
+5 & Ombro: manivela em pilha de camadas, furo passante (massa negativa) e pino cilíndrico. \\
+\hline
+6 & Motor com caixa de redução: composição do corpo e da caixa a partir do desenho técnico. \\
+\hline
+7 & Bateria: paralelepípedo homogêneo, verificação de densidade e conversão de unidades. \\
+\hline
+8 & Quadril: haste fina, comparação entre as hipóteses de seção circular e quadrada. \\
+\hline
+9 & Montagem do robô completo no sistema do corpo, com a posição ($\psi=0^\circ$) definida na Tabela de dimensões e o desenho das vistas. \\
+\hline
+10 & Corpos móveis e manivela a 30 rpm: cinemática das alavancas (Equações \ref{eq:phi} e \ref{eq:dphi}) e inércia em torno dos pivôs. \\
+\hline
+11 & Modelo dinâmico plano: montagem simbólica das matrizes de massa e dos vetores de contato, verificação contra Lagrange, detecção de eventos de engate e integração das equações da marcha na corda. \\
+\hline
+\end{tabular}
+\end{table}

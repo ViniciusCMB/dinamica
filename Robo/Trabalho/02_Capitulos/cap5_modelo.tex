@@ -1,0 +1,162 @@
+\chapter{MODELO CINEMÁTICO E DINÂMICO}
+\label{chapter:modelo}
+
+Este capítulo descreve o modelo do mecanismo do robô e o equacionamento do seu movimento. Parte-se da cinemática da manivela e das alavancas, que é prescrita pelo motor, constrói-se a cadeia de referenciais com as equações de velocidade e aceleração do Capítulo \ref{chapter:revisao} e obtêm-se as equações de movimento pela formulação de Newton-Euler projetada nas velocidades generalizadas. O contato dos ganchos com a corda é introduzido por restrições, e a troca de mão por impacto.
+
+\section{Descrição do Mecanismo}
+\label{sec:mecanismo}
+
+O eixo de saída do motor atravessa a caixa de redução e recebe um ombro em cada lado (\ref{fig:robo_montado}). Cada ombro é uma manivela cujo pino, paralelo ao eixo e a $R=9{,}0$ mm dele, atravessa uma fenda no braço do mesmo lado. Os braços são hastes rígidas que giram em torno do eixo do quadril, situado $h=45{,}5$ mm abaixo do eixo do motor, e terminam em ganchos que se apoiam na corda. As pernas também giram em torno do quadril, mas livremente, como pêndulos que atuam como contrapesos. Como os pinos das duas manivelas estão defasados de 180$^\circ$, quando um braço se move para trás o outro se move para a frente, e a mão que está apoiada na corda arrasta o robô no sentido oposto ao do seu movimento em relação ao corpo.
+
+\section{Hipóteses e Graus de Liberdade}
+\label{sec:hipoteses}
+
+O modelo adota as seguintes hipóteses:
+
+\begin{itemize}
+    \item todos os corpos são rígidos e de densidade uniforme (Capítulo \ref{chapter:inercia});
+    \item o movimento é plano, no plano $x$--$y$ (sagital): as alavancas e as pernas giram em torno de eixos paralelos a $z$ e o robô é aproximadamente simétrico em $z$, de modo que a rolagem em torno da corda não é considerada;
+    \item a manivela gira com velocidade angular constante $\dot\psi = \omega = 30$ rpm $=\pi$ rad/s no sentido anti-horário, de modo que $\psi(t)=\psi_0+\omega t$ (a dinâmica do motor não é modelada);
+    \item o pino desliza numa fenda ao longo do braço, de modo que o eixo do braço passa sempre pelo pino (sem a fenda, a distância entre o pino e o quadril, que varia de 36,5 mm a 54,5 mm, não seria compatível com um braço rígido);
+    \item a mão engatada na corda é um pino em um ponto da corda, que é suposta reta, horizontal e rígida ($y=0$);
+    \item o atrito é representado por amortecimento viscoso nos quadris das pernas e na arfagem do chassi, com coeficientes supostos.
+\end{itemize}
+
+Os graus de liberdade do modelo são a posição e a rotação do chassi no plano, ou seja, $x_O$, $y_O$ e $\theta$, e os ângulos das pernas em relação ao chassi, $\theta_D$ e $\theta_E$:
+\begin{equation}
+    \mathbf{q} = [\,x_O,\; y_O,\; \theta,\; \theta_D,\; \theta_E\,]^T .
+    \label{eq:coordenadas}
+\end{equation}
+A manivela ($\psi$) e as alavancas ($\varphi_D$, $\varphi_E$) têm movimento relativo ao chassi prescrito por $t$ e não contribuem com graus de liberdade, mas suas massas e inércias participam das equações como corpos em movimento prescrito.
+
+\section{Cinemática da Manivela e das Alavancas}
+\label{sec:alavancas}
+
+O pino da manivela é um ponto $P$ de um corpo que gira em torno de um ponto $O$ fixo no chassi. Tomando $E\equiv O$ nas Equações \ref{eq:velocidade} e \ref{eq:aceleracao}, com $\vec{v}_{rel}=\vec{0}$ e $\vec{a}_{rel}=\vec{0}$ (o pino pertence ao corpo da manivela), com o chassi parado e $\vec\alpha=\vec 0$:
+\begin{equation}
+    \vec{v}_P = \vec{\omega}\times\vec{r}_{P/O}, \qquad
+    \vec{a}_P = \vec{\omega}\times(\vec{\omega}\times\vec{r}_{P/O}) = -\,\omega^{2}\,\vec{r}_{P/O},
+    \label{eq:pino}
+\end{equation}
+com $\vec r_{P/O}=R(\cos\psi\,\hat{x}+\sin\psi\,\hat{y})$. Para $\omega=\pi$ rad/s e $R=9$ mm, obtêm-se $|\vec v_P| = \omega R = 28,3$ mm/s e $|\vec a_P| = \omega^2 R = 0,089$ m/s$^2$.
+
+O braço D passa pelo pino da manivela D e gira em torno do quadril $H$, situado a $h$ abaixo de $O$. Definindo $\varphi$ como o ângulo do eixo do braço com a vertical, positivo quando o topo vai para trás ($+x$), a condição de o eixo do braço passar pelo pino fornece
+\begin{equation}
+    \tan\varphi_D = \frac{R\cos\psi}{h + R\sin\psi}
+    \quad\Rightarrow\quad
+    \varphi_D(\psi)=\operatorname{atan2}\!\big(R\cos\psi,\;h+R\sin\psi\big),
+    \qquad \varphi_E(\psi)=\varphi_D(\psi+\pi),
+    \label{eq:phi}
+\end{equation}
+em que o pino E está $180^\circ$ adiante. Derivando em relação a $\psi$:
+\begin{equation}
+    \frac{d\varphi_D}{d\psi} = -\,\frac{R\,(R + h\sin\psi)}{R^{2}+h^{2}+2Rh\sin\psi},
+    \qquad \dot\varphi = \frac{d\varphi}{d\psi}\,\dot\psi,
+    \qquad \ddot\varphi = \frac{d^{2}\varphi}{d\psi^{2}}\,\dot\psi^{2}.
+    \label{eq:dphi}
+\end{equation}
+O ângulo da alavanca é máximo quando o pino é tangente ao braço, o que ocorre para $\sin\psi=-R/h$ e dá $\varphi_{max}=\arcsin(R/h) = 11,4^\circ$. Para $\psi=0$, $\varphi_D=11,19^\circ$ e $\varphi_E=-11,19^\circ$.
+
+A mão (ápice do gancho) está a $L_m=109{,}9$ mm do quadril, ao longo do eixo do braço. Em relação ao chassi, seu curso horizontal entre os extremos é $S=L_m(\sin\varphi_{max}-\sin\varphi_{min}) = 2L_mR/h = 43,5$ mm. Se a mão engatada não escorregasse e o chassi não balançasse, o robô avançaria $S$ a cada meia volta da manivela, ou seja, com velocidade média
+\begin{equation}
+    \bar v_{cin} = 2\,S\,f = \frac{4\,L_m\,R\,f}{h} = 43,5\ \text{mm/s},
+    \label{eq:vcin}
+\end{equation}
+com $f = 0{,}5$ Hz. Esse valor é o limite da cinemática pura e serve de referência para os resultados do Capítulo \ref{chapter:resultados}.
+
+\section{Cadeia de Referenciais}
+\label{sec:cadeia}
+
+Adotam-se o referencial inercial $N$ (com $x$ para as costas, $y$ para cima e $z$ perpendicular ao plano do movimento) e, a partir dele, os referenciais do chassi $B$ (girado de $\theta$), das manivelas $C_D$ e $C_E$ (girados de $\psi$ e $\psi+\pi$ em relação a $B$), das alavancas $L_D$ e $L_E$ (girados de $-\varphi_D$ e $-\varphi_E$ em relação a $B$) e das pernas $G_D$ e $G_E$ (girados de $\theta_D$ e $\theta_E$ em relação a $B$). A posição de $O$ é $\vec r_O = x_O\hat x_N + y_O\hat y_N$ e a do quadril é $\vec r_H = \vec r_O + y_h\hat y_B$, com $y_h=-45{,}5$ mm. O centro de massa de cada corpo é fixo no respectivo referencial, a uma distância conhecida do ponto de referência: de $O$, para o chassi e as manivelas, e de $H$, para as alavancas e as pernas. A mão $M_j$ ($j=D,E$) é o ponto da alavanca a $L_m$ do quadril:
+\begin{equation}
+    \vec{r}_{M_j} = \vec r_O + y_h\,\hat{y}_B + L_m\left(\sin\varphi_j\,\hat{x}_B + \cos\varphi_j\,\hat{y}_B\right).
+    \label{eq:mao}
+\end{equation}
+
+Para cada corpo, a velocidade e a aceleração do centro de massa são obtidas pelas Equações \ref{eq:velocidade} e \ref{eq:aceleracao} tomando um ponto de referência $E$ do mesmo corpo rígido (de modo que $\vec v_{rel}=\vec a_{rel}=\vec 0$), com a velocidade angular absoluta do corpo, por exemplo $\omega_{L_j}=\dot\theta-\dot\varphi_j$ para as alavancas e $\omega_{C_j}=\dot\theta+\dot\psi$ para as manivelas, e com a velocidade e a aceleração do ponto de referência obtidas do corpo anterior da cadeia (do chassi, para $O$ e $H$). O movimento relativo entre corpos aparece, assim, na velocidade e na aceleração angulares absolutas de cada corpo e na aceleração do ponto de referência. A mesma cadeia fornece $\vec\alpha$ e $\vec\omega$ de cada corpo para a equação de Euler.
+
+\section{Equações de Movimento}
+\label{sec:eqmov}
+
+Para cada um dos sete corpos ($i=1,\dots,7$: chassi, duas manivelas, duas alavancas e duas pernas), valem as equações de Newton e de Euler (Equações \ref{eq:newton} e \ref{eq:euler_momentos}). No movimento plano, o tensor de inércia entra apenas pelo momento $I_{zz,i}$ em torno do eixo $z$ que passa pelo centro de massa, e a equação de Euler se reduz a $\dot{H}_{z,i}=I_{zz,i}\,\alpha_{i}+\left[\vec\omega_i\times(\left[I_i\right]\vec\omega_i)\right]_z = I_{zz,i}\,\alpha_i$, pois o termo giroscópico é perpendicular ao plano e não afeta o movimento plano. Projetando as duas equações nas velocidades parciais dos corpos em relação às velocidades generalizadas $\dot q_k$ (método de Kane \cite{kane1985}), eliminam-se as reações internas que não realizam trabalho, e resulta para $k=1,\dots,5$:
+\begin{equation}
+    \sum_{i=1}^{7}\Big[\big(m_i\,\vec a_i-\vec F_i\big)\cdot\frac{\partial\vec v_i}{\partial\dot q_k}
+    +\big(I_{zz,i}\,\alpha_i-M_{z,i}\big)\frac{\partial\omega_i}{\partial\dot q_k}\Big]=0,
+    \label{eq:kane}
+\end{equation}
+em que $\vec F_i = -m_i g\,\hat y_N$ é o peso e $M_{z,i}$ inclui os amortecimentos, que entram como forças generalizadas $Q_\theta=-c_{ch}\dot\theta$ e $Q_{\theta_j}=-c_{p}\dot\theta_j$. Como as velocidades e as acelerações são lineares nas acelerações generalizadas, a Equação \ref{eq:kane} resulta em
+\begin{equation}
+    \mathbf{M}(\mathbf{q},t)\,\ddot{\mathbf{q}} + \mathbf{c}(\mathbf{q},\dot{\mathbf{q}},t) = \mathbf{A}^{T}\boldsymbol{\lambda},
+    \qquad
+    M_{kl}=\sum_i\Big[m_i\frac{\partial\vec v_i}{\partial\dot q_k}\cdot\frac{\partial\vec v_i}{\partial\dot q_l}+I_{zz,i}\frac{\partial\omega_i}{\partial\dot q_k}\frac{\partial\omega_i}{\partial\dot q_l}\Big],
+    \label{eq:Mqdd}
+\end{equation}
+em que $\mathbf{M}$ é a matriz de massa, $\mathbf{c}$ reúne os termos de velocidade, o peso e o efeito do movimento prescrito de $\psi$ e das alavancas, e $\mathbf{A}^T\boldsymbol{\lambda}$ é a força da corda sobre o gancho.
+
+\section{Contato com a Corda, Troca de Mão e Impacto}
+\label{sec:contato}
+
+Quando a mão $j$ está engatada, seu ponto $\vec{r}_{M_j}$ coincide com um ponto fixo da corda, $\vec{r}_c$:
+\begin{equation}
+    \mathbf{g}(\mathbf{q},t)=\vec r_M(\mathbf{q},t)-\vec r_c=\mathbf{0}
+    \;\Rightarrow\;
+    \mathbf{A}\ddot{\mathbf q}+\mathbf b=\mathbf 0,
+    \label{eq:restricao}
+\end{equation}
+em que $\mathbf A=\partial\mathbf g/\partial\mathbf q$ e $\mathbf b=\frac{d^2\mathbf g}{dt^2}$ com $\ddot{\mathbf q}=0$ (não nulo, pois a mão se move em relação ao chassi enquanto a manivela gira). As Equações \ref{eq:Mqdd} e \ref{eq:restricao} formam o sistema linear
+\begin{equation}
+    \begin{bmatrix}\mathbf{M} & -\mathbf{A}^{T}\\ \mathbf{A} & \mathbf 0\end{bmatrix}
+    \begin{bmatrix}\ddot{\mathbf q}\\ \boldsymbol\lambda\end{bmatrix}
+    =
+    \begin{bmatrix}-\mathbf c\\ -\mathbf b-2\xi\omega_n\dot{\mathbf g}-\omega_n^{2}\mathbf g\end{bmatrix},
+    \label{eq:kkt}
+\end{equation}
+em que os dois últimos termos do lado direito são a estabilização de Baumgarte \cite{baumgarte1972}, com $\xi=1$ e $\omega_n=60$ s$^{-1}$, que impede a deriva numérica da restrição. O vetor $\boldsymbol\lambda=(\lambda_x,\lambda_y)$ é a força da corda sobre o gancho; como a corda só pode sustentar o robô, exige-se $\lambda_y>0$.
+
+A mão engatada é escolhida pela fase da manivela. A mão desejada é a E quando $\sin\psi>0$ e a D quando $\sin\psi<0$, o que alterna a cada meia volta; e essa regra, com a manivela girando no sentido anti-horário, faz o robô avançar para a frente. Ao mudar a mão desejada, a nova mão só engata quando sua ponta sobe até a altura da corda ($y=0$, cruzando de baixo para cima), pois um gancho aberto para baixo apanha a corda por baixo; nesse instante, o gancho anterior se solta. A mão que engata para, em relação à corda, de forma abrupta; trata-se de um impacto perfeitamente plástico, com impulso $\boldsymbol\Lambda$ no ponto de contato, que modifica as velocidades generalizadas de $\dot{\mathbf q}^-$ para $\dot{\mathbf q}^+$ sem alterar as posições:
+\begin{equation}
+    \mathbf{M}\,(\dot{\mathbf q}^{+}-\dot{\mathbf q}^{-}) = \mathbf{A}^{T}\boldsymbol\Lambda,
+    \qquad
+    \mathbf{A}\,\dot{\mathbf q}^{+} = \mathbf 0 .
+    \label{eq:impacto}
+\end{equation}
+
+\section{Integração Numérica, Condições Iniciais e Verificação}
+\label{sec:numerica}
+
+As matrizes e vetores das Equações \ref{eq:Mqdd} e \ref{eq:restricao} foram obtidos simbolicamente com a biblioteca SymPy \cite{sympy2017} e integrados com o método de Runge-Kutta de ordem 4(5) de Dormand-Prince \cite{dormand1980}, da biblioteca SciPy \cite{scipy2020}, com tolerâncias relativa de $10^{-8}$ e absoluta de $10^{-10}$ e passo máximo de 5 ms, com detecção do evento de engate da corda. A cada passo, o sistema linear da Equação \ref{eq:kkt} é resolvido para $\ddot{\mathbf q}$ e $\boldsymbol\lambda$. A violação máxima da restrição da corda durante toda a simulação foi de 0,079 mm.
+
+A condição inicial é o equilíbrio estático do robô pendurado pela mão E em $\psi_0=0$, com velocidades nulas, obtido pela minimização da energia potencial em relação a $\theta$, $\theta_D$ e $\theta_E$. O resultado é $\theta=$-$21,9^\circ$ (arfagem do chassi) e ângulo das pernas em relação ao chassi de 49,6$^\circ$, ou seja, 27,7$^\circ$ em relação à posição do desenho da \ref{fig:perna_modelo}.
+
+Para verificar o equacionamento, as equações obtidas pela projeção de Newton-Euler foram comparadas com as equações de Lagrange do mesmo sistema, $\frac{d}{dt}\frac{\partial T}{\partial\dot q_k}-\frac{\partial T}{\partial q_k}+\frac{\partial V}{\partial q_k}=Q_k$, em cinco estados aleatórios. A diferença relativa máxima entre os dois resíduos foi de $1{,}7\cdot 10^{-16}$, ou seja, coincidem até o erro de arredondamento.
+
+A \ref{tab:param_dyn} reúne os valores adotados no modelo dinâmico.
+
+\begin{table}[H]
+\centering
+\caption{\label{tab:param_dyn}- Parâmetros do modelo dinâmico.}
+\vspace*{.1cm}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Parâmetro} & \textbf{Valor} \\
+\hline
+Velocidade da manivela ($\omega$) & 30 rpm ($\pi$ rad/s), anti-horário \\
+\hline
+Raio da manivela ($R$) & 9,0 mm \\
+\hline
+Distância eixo do motor -- quadril ($h$) & 45,5 mm \\
+\hline
+Distância quadril -- ápice da mão ($L_m$) & 109,9 mm \\
+\hline
+Massa total do robô & 103,1 g \\
+\hline
+Amortecimento da arfagem do chassi ($c_{ch}$) & $10^{-4}$ N$\cdot$m$\cdot$s/rad (suposto) \\
+\hline
+Amortecimento dos quadris ($c_{p}$) & $5\cdot 10^{-5}$ N$\cdot$m$\cdot$s/rad (suposto) \\
+\hline
+Gravidade ($g$) & 9,81 m/s$^2$ \\
+\hline
+Duração da simulação & 8 s \\
+\hline
+\end{tabular}
+\end{table}
